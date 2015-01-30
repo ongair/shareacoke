@@ -40,13 +40,18 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-nav (0.2.4)
+      pry (>= 0.9.10, < 0.11.0)
     rack (1.6.0)
     rack-accept (0.4.5)
       rack (>= 0.4)
+    rack-livereload (0.3.15)
+      rack
     rack-mount (0.8.3)
       rack (>= 1.0.0)
     rmagick (2.13.4)
     slop (3.6.0)
+    textorize (1.0)
     thread_safe (0.3.4)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -62,4 +67,7 @@ PLATFORMS
 DEPENDENCIES
   grape
   pry
+  pry-nav
+  rack-livereload
   rmagick
+  textorize
