@@ -1,7 +1,6 @@
 require 'grape'
 require 'rmagick'
-require 'pry'
-require 'wechat'
+
 require_relative 'composite'
 
 module Share
