@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'rmagick'
+require 'tmpdir'
 
 module Composite
 
@@ -14,7 +15,7 @@ module Composite
 
   def self.generate_image source, name, id
     # puts "Generating image for #{name}"
-    output_name = "tmp/#{id}_#{name}.png"
+    output_name = "#{Dir.tmpdir}/#{id}_#{name}.png"
 
     # `textorize -fYou2013 -gtransparent -s55 -cwhite -o#{output_name} #{name}`
     `convert -background transparent -fill white -font you_db-webfont.ttf -pointsize 55 label:#{name} #{output_name}`
@@ -29,7 +30,7 @@ module Composite
 
     coordinates = Composite.center(name_img.columns, name_img.rows)
     bottle = bottle.composite(name_img, coordinates[0], coordinates[1], Magick::OverCompositeOp)
-    final = "tmp/#{id}_#{name}_final.png"
+    final = "#{Dir.tmpdir}/#{id}_#{name}_final.png"
     bottle.write(final)
     sleep(0.5)
     final
