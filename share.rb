@@ -34,13 +34,15 @@ module Share
       post :image do
         # message_received
         if params[:notification_type] == "MessageReceived"
-          phone_number = params[:external_contact_id]
+          external_contact_id = params[:external_contact_id]
           name = params[:name]
 
-          # url = "http://188.166.182.98/api/pictures/share?recipient=#{name}&id=#{phone_number}.png"
-          # token = "cfae9c460ba07ede023900d72ead3e35"
-          # api_url = "http://localhost:3000/api/v1/base/send_image"
-          # HTTParty.post(api_url, body: { image: url, phone_number: phone_number, token: token })
+          api_url = "#{ENV['ONGAIR_URL']}/api/v1/base/send_image"
+          image = "#{ENV['URL']}/api/pictures/share?recipient=#{name}&id=#{external_contact_id}.png"
+          token = ENV['token']
+
+          HTTParty.post(api_url, body: { image: image, external_contact_id: external_contact_id, token: token })
+          true
         end
       end
     end
