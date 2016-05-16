@@ -13,7 +13,7 @@ module Share
     resource :pictures do 
       desc "Return if we are working or not"
       get :status do
-        true
+        { success: true, ongair_url: ENV['ONGAIR_URL'], ongair_token: ENV['TOKEN'] }.to_json
       end      
 
       desc "Return a share a coke image url"
@@ -32,17 +32,19 @@ module Share
       end
 
       post :image do
-        # message_received
         if params[:notification_type] == "MessageReceived"
-          external_contact_id = params[:external_contact_id]
-          name = params[:name]
+          external_contact_id = params[:phone_number]
+          name = params[:text]
 
           api_url = "#{ENV['ONGAIR_URL']}/api/v1/base/send_image"
           image = "#{ENV['URL']}/api/pictures/share?recipient=#{name}&id=#{external_contact_id}.png"
-          token = ENV['token']
 
-          HTTParty.post(api_url, body: { image: image, external_contact_id: external_contact_id, token: token })
-          true
+          puts "Url #{image}"
+          token = ENV['TOKEN']
+
+          response = HTTParty.post(api_url, body: { image: image, content_type: 'image/png', phone_number: external_contact_id, token: token })
+          puts "Response #{response}"
+          { success: true }.to_json
         end
       end
     end

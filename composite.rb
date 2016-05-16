@@ -8,10 +8,6 @@ module Composite
   WIDTH=130
   HEIGHT=50
 
-  def self.generate_name name
-    
-  end
-
   def self.generate_image source, name, id
     # puts "Generating image for #{name}"
     output_name = "tmp/#{id}_#{name}.png"
