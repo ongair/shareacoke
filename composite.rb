@@ -16,7 +16,10 @@ module Composite
     `convert -background transparent -fill white -font you_db-webfont.ttf -pointsize 55 label:#{name} #{output_name}`
     sleep(0.5)
 
-    bottle = Magick::Image.read('bottle.png')[0]
+    template = File.expand_path('.bottle.png', __FILE__)
+
+    # bottle = Magick::Image.read('bottle.png')[0]
+    bottle = Magick::Image.read(template)[0]
     name_img = Magick::Image.read(output_name)[0]
     name_width = name_img.columns
 
