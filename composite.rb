@@ -12,11 +12,12 @@ module Composite
     # puts "Generating image for #{name}"
     output_name = "tmp/#{id}_#{name}.png"
 
-    # `textorize -fYou2013 -gtransparent -s55 -cwhite -o#{output_name} #{name}`
-    `convert -background transparent -fill white -font you_db-webfont.ttf -pointsize 55 label:#{name} #{output_name}`
+    font_path = File.expand_path('../you_db-webfont.ttf', __FILE__)
+    # `convert -background transparent -fill white -font you_db-webfont.ttf -pointsize 55 label:#{name} #{output_name}`
+    `convert -background transparent -fill white -font #{font_path} -pointsize 55 label:#{name} #{output_name}`
     sleep(0.5)
 
-    template = File.expand_path('.bottle.png', __FILE__)
+    template = File.expand_path('../bottle.png', __FILE__)
 
     # bottle = Magick::Image.read('bottle.png')[0]
     bottle = Magick::Image.read(template)[0]
