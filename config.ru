@@ -1,4 +1,4 @@
-require_relative 'share.rb'
+require './share.rb'
 require 'dotenv'
 Dotenv.load 
 
