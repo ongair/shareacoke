@@ -42,7 +42,7 @@ module Share
           puts "Url #{image}"
           token = ENV['TOKEN']
 
-          response = HTTParty.post(api_url, body: { image: image, content_type: 'image/png', phone_number: external_contact_id, token: token })
+          response = HTTParty.post(api_url, body: { image: image, content_type: 'image/png', phone_number: external_contact_id, thread: true, token: token })
           puts "Response #{response}"
           { success: true }.to_json
         end
