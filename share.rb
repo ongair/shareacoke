@@ -34,7 +34,7 @@ module Share
       post :image do
         if params[:notification_type] == "MessageReceived"
           external_contact_id = params[:phone_number]
-          name = params[:text]
+          name = params[:text].strip.split(' ').first
 
           api_url = "#{ENV['ONGAIR_URL']}/api/v1/base/send_image"
           image = "#{ENV['URL']}/api/pictures/share?recipient=#{name}&id=#{external_contact_id}.png"
